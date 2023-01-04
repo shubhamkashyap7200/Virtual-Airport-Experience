@@ -78,8 +78,7 @@ class ViewController: UIViewController {
 
 
 
-// MARK: - ARSCNViewDelegate
-
+// MARK: - AR Session Management (ARSCNViewDelegate)
 extension ViewController: ARSCNViewDelegate {
     
     /*
@@ -118,16 +117,16 @@ extension ViewController {
         }
     }
     
+    
+    // 2
+    func resetApp() {
+//        self.resetARSession()
+        self.appState = .DetectSurface
+    }
+    
 }
 
 // MARK: - AR Coaching Overlay
-extension ViewController {
-    
-    // Add code here...
-    
-}
-
-// MARK: - AR Session Management (ARSCNViewDelegate)
 extension ViewController {
     
     // Add code here...
@@ -138,6 +137,11 @@ extension ViewController {
 extension ViewController {
     
     // Add code here...
+    func initScene() {
+        let scene = SCNScene()
+        sceneView.scene = scene
+        sceneView.delegate = self
+    }
     
 }
 
