@@ -9,10 +9,33 @@ import UIKit
 import SceneKit
 import ARKit
 
-class ViewController: UIViewController, ARSCNViewDelegate {
+// MARK: - App State Management
+enum AppState: Int16 {
+    case DetectSurface
+    case PointAtSurface
+    case TapAtStart
+    case Started
+}
+
+
+class ViewController: UIViewController {
+
+    // MARK: - Properties
 
     @IBOutlet var sceneView: ARSCNView!
+    @IBOutlet var statusLabel: UILabel!
+    @IBOutlet var resetButton: UIButton!
+
+    @IBAction func resetButtonAction(_ sender: Any) {
+        print("DEBUG:: Reset Button is tapped")
+    }
     
+    @IBAction func tapGestureAction(_ sender: Any) {
+        print("DEBUG:: Screen is tapped")
+    }
+    
+    // MARK: - Lifecycle functions
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -45,8 +68,13 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Pause the view's session
         sceneView.session.pause()
     }
+}
 
-    // MARK: - ARSCNViewDelegate
+
+
+// MARK: - ARSCNViewDelegate
+
+extension ViewController: ARSCNViewDelegate {
     
 /*
     // Override to create and configure nodes for anchors added to the view's session.
@@ -72,3 +100,39 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
     }
 }
+
+// MARK: - App Management
+extension ViewController {
+  
+  // Add code here...
+  
+}
+
+// MARK: - AR Coaching Overlay
+extension ViewController {
+  
+  // Add code here...
+  
+}
+
+// MARK: - AR Session Management (ARSCNViewDelegate)
+extension ViewController {
+  
+  // Add code here...
+  
+}
+
+// MARK: - Scene Management
+extension ViewController {
+  
+  // Add code here...
+  
+}
+
+// MARK: - Focus Node Management
+extension ViewController {
+  
+  // Add code here...
+  
+}
+
