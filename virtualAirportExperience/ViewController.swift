@@ -38,6 +38,7 @@ class ViewController: UIViewController {
     
     @IBAction func resetButtonAction(_ sender: Any) {
         print("DEBUG:: Reset Button is tapped")
+        self.resetARSession()
     }
     
     @IBAction func tapGestureAction(_ sender: Any) {
@@ -50,6 +51,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         self.initScene()
+        self.initARSession()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -153,9 +155,34 @@ extension ViewController {
 }
 
 // MARK: - AR Coaching Overlay
-extension ViewController {
+extension ViewController: ARCoachingOverlayViewDelegate {
     
     // Add code here...
+    func coachingOverlayViewWillActivate(_ coachingOverlayView: ARCoachingOverlayView) {
+        
+    }
+    
+    func coachingOverlayViewDidDeactivate(_ coachingOverlayView: ARCoachingOverlayView) {
+        self.startApp()
+    }
+    
+    func coachingOverlayViewDidRequestSessionReset(_ coachingOverlayView: ARCoachingOverlayView) {
+        self.resetApp()
+    }
+    
+    func initCoachOverlayView() {
+        let coachingOverlay = ARCoachingOverlayView()
+        coachingOverlay.session = self.sceneView.session
+        coachingOverlay.delegate = self
+        coachingOverlay.activatesAutomatically = true
+        coachingOverlay.goal = .horizontalPlane
+        self.sceneView.addSubview(coachingOverlay)
+        
+        coachingOverlay.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            NSLayoutConstraint(item: coachingOverlay, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1.0, constant: 0)
+        ])
+    }
     
 }
 
