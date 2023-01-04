@@ -52,6 +52,7 @@ class ViewController: UIViewController {
         
         self.initScene()
         self.initARSession()
+        self.initCoachOverlayView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
