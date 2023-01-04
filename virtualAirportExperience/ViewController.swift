@@ -15,17 +15,23 @@ enum AppState: Int16 {
     case PointAtSurface
     case TapAtStart
     case Started
+    
 }
 
 
 class ViewController: UIViewController {
-
+    
     // MARK: - Properties
-
+    var trackingStatus: String = ""
+    var statusMessage: String = ""
+    var appState: AppState = .DetectSurface
+    
+    // MARK: - Interface builders
+    
     @IBOutlet var sceneView: ARSCNView!
     @IBOutlet var statusLabel: UILabel!
     @IBOutlet var resetButton: UIButton!
-
+    
     @IBAction func resetButtonAction(_ sender: Any) {
         print("DEBUG:: Reset Button is tapped")
     }
@@ -35,7 +41,7 @@ class ViewController: UIViewController {
     }
     
     // MARK: - Lifecycle functions
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -57,7 +63,7 @@ class ViewController: UIViewController {
         
         // Create a session configuration
         let configuration = ARWorldTrackingConfiguration()
-
+        
         // Run the view's session
         sceneView.session.run(configuration)
     }
@@ -76,14 +82,14 @@ class ViewController: UIViewController {
 
 extension ViewController: ARSCNViewDelegate {
     
-/*
-    // Override to create and configure nodes for anchors added to the view's session.
-    func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
-        let node = SCNNode()
+    /*
+     // Override to create and configure nodes for anchors added to the view's session.
+     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
+     let node = SCNNode()
      
-        return node
-    }
-*/
+     return node
+     }
+     */
     
     func session(_ session: ARSession, didFailWithError error: Error) {
         // Present an error message to the user
@@ -103,36 +109,42 @@ extension ViewController: ARSCNViewDelegate {
 
 // MARK: - App Management
 extension ViewController {
-  
-  // Add code here...
-  
+    
+    // Add code here...
+    // 1
+    func startApp() {
+        DispatchQueue.main.async {
+            self.appState = .DetectSurface
+        }
+    }
+    
 }
 
 // MARK: - AR Coaching Overlay
 extension ViewController {
-  
-  // Add code here...
-  
+    
+    // Add code here...
+    
 }
 
 // MARK: - AR Session Management (ARSCNViewDelegate)
 extension ViewController {
-  
-  // Add code here...
-  
+    
+    // Add code here...
+    
 }
 
 // MARK: - Scene Management
 extension ViewController {
-  
-  // Add code here...
-  
+    
+    // Add code here...
+    
 }
 
 // MARK: - Focus Node Management
 extension ViewController {
-  
-  // Add code here...
-  
+    
+    // Add code here...
+    
 }
 
