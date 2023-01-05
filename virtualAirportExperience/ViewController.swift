@@ -15,7 +15,6 @@ enum AppState: Int16 {
     case PointAtSurface
     case TapAtStart
     case Started
-    
 }
 
 
@@ -25,6 +24,7 @@ class ViewController: UIViewController {
     var trackingStatus: String = ""
     var statusMessage: String = ""
     var appState: AppState = .DetectSurface
+    var focusPoint: CGPoint!
     
     override var prefersStatusBarHidden: Bool {
       return true
@@ -227,6 +227,14 @@ extension ViewController {
 extension ViewController {
     
     // Add code here...
+    func initFocusNode() {
+        focusPoint = CGPoint(x: view.center.x, y: view.center.y + view.center.y * 0.1)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(orientationChanged), name: UIDevice.orientationDidChangeNotification, object: nil)
+    }
     
+    @objc func orientationChanged() {
+        focusPoint = CGPoint(x: view.center.x, y: view.center.y + view.center.y * 0.1)
+    }
 }
 

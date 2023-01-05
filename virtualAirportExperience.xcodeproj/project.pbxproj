@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		512C6D5529668A5700B8A747 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 512C6D5429668A5700B8A747 /* art.scnassets */; };
 		514ACD9D2965CF98009E2EA3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514ACD9C2965CF98009E2EA3 /* AppDelegate.swift */; };
-		514ACD9F2965CF98009E2EA3 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 514ACD9E2965CF98009E2EA3 /* art.scnassets */; };
 		514ACDA12965CF98009E2EA3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514ACDA02965CF98009E2EA3 /* ViewController.swift */; };
 		514ACDA42965CF98009E2EA3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 514ACDA22965CF98009E2EA3 /* Main.storyboard */; };
 		514ACDA62965CF99009E2EA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 514ACDA52965CF99009E2EA3 /* Assets.xcassets */; };
@@ -16,9 +16,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		512C6D5429668A5700B8A747 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; name = art.scnassets; path = "../../../../../Downloads/apr-materials-editions-2.0/16-focus-nodes-and-billboards/projects/starter/resources/art.scnassets"; sourceTree = "<group>"; };
 		514ACD992965CF98009E2EA3 /* virtualAirportExperience.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = virtualAirportExperience.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		514ACD9C2965CF98009E2EA3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		514ACD9E2965CF98009E2EA3 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		514ACDA02965CF98009E2EA3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		514ACDA32965CF98009E2EA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		514ACDA52965CF99009E2EA3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -56,7 +56,7 @@
 			isa = PBXGroup;
 			children = (
 				514ACD9C2965CF98009E2EA3 /* AppDelegate.swift */,
-				514ACD9E2965CF98009E2EA3 /* art.scnassets */,
+				512C6D5429668A5700B8A747 /* art.scnassets */,
 				514ACDA02965CF98009E2EA3 /* ViewController.swift */,
 				514ACDA22965CF98009E2EA3 /* Main.storyboard */,
 				514ACDA52965CF99009E2EA3 /* Assets.xcassets */,
@@ -123,8 +123,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				514ACD9F2965CF98009E2EA3 /* art.scnassets in Resources */,
 				514ACDA92965CF99009E2EA3 /* LaunchScreen.storyboard in Resources */,
+				512C6D5529668A5700B8A747 /* art.scnassets in Resources */,
 				514ACDA62965CF99009E2EA3 /* Assets.xcassets in Resources */,
 				514ACDA42965CF98009E2EA3 /* Main.storyboard in Resources */,
 			);
