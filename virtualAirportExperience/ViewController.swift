@@ -26,6 +26,7 @@ class ViewController: UIViewController {
     var appState: AppState = .DetectSurface
     var focusPoint: CGPoint!
     var focusNode: SCNNode!
+    var arPortNode: SCNNode!
     
     override var prefersStatusBarHidden: Bool {
       return true
