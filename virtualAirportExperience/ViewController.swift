@@ -230,6 +230,16 @@ extension ViewController {
         arPortNode = artPortScene.rootNode.childNode(withName: "ARPort", recursively: false)
         arPortNode.isHidden = true
         sceneView.scene.rootNode.addChildNode(arPortNode)
+        
+        // Debug Setting -- REMOVE THEM BEFORE PROD
+        sceneView.showsStatistics = true
+        sceneView.debugOptions = [
+            ARSCNDebugOptions.showFeaturePoints,
+            ARSCNDebugOptions.showCreases,
+            ARSCNDebugOptions.showWorldOrigin,
+            ARSCNDebugOptions.showWireframe,
+            ARSCNDebugOptions.showBoundingBoxes,
+        ]
     }
     
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
