@@ -204,6 +204,23 @@ extension ViewController: ARCoachingOverlayViewDelegate {
 extension ViewController {
     
     // Add code here...
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        DispatchQueue.main.async {
+            if let touchLocation = touches.first?.location(in: self.sceneView) {
+                if let hit = self.sceneView.hitTest(touchLocation, options: nil).first {
+                    if hit.node.name == "Touch" {
+                        let billboardNode = hit.node.childNode(withName: "BillBoard", recursively: false)
+                        billboardNode?.isHidden = false
+                    }
+                    
+                    if hit.node.name == "Billboard" {
+                        hit.node.isHidden = true
+                    }
+                }
+            }
+        }
+    }
+    
     func initScene() {
         let scene = SCNScene()
         sceneView.scene = scene
