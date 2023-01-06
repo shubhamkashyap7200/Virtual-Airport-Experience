@@ -45,6 +45,13 @@ class ViewController: UIViewController {
     
     @IBAction func tapGestureAction(_ sender: Any) {
         print("DEBUG:: Screen is tapped")
+        
+        guard appState == .TapAtStart else { return }
+        self.arPortNode.isHidden = false
+        self.focusNode.isHidden = true
+        self.arPortNode.position = self.focusNode.position
+        appState = .Started
+        
     }
     
     // MARK: - Lifecycle functions
