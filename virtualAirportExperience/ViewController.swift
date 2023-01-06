@@ -212,7 +212,7 @@ extension ViewController {
             if let touchLocation = touches.first?.location(in: self.sceneView) {
                 if let hit = self.sceneView.hitTest(touchLocation, options: nil).first {
                     if hit.node.name == "Touch" {
-                        let billboardNode = hit.node.childNode(withName: "BillBoard", recursively: false)
+                        let billboardNode = hit.node.childNode(withName: "Billboard", recursively: false)
                         billboardNode?.isHidden = false
                     }
                     
