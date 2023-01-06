@@ -201,6 +201,11 @@ extension ViewController {
         let scene = SCNScene()
         sceneView.scene = scene
         sceneView.delegate = self
+        
+        let artPortScene = SCNScene(named: "art.scnassets/Scenes/ARPortScene.scn")!
+        arPortNode = artPortScene.rootNode.childNode(withName: "ARPort", recursively: false)
+        arPortNode.isHidden = true
+        sceneView.scene.rootNode.addChildNode(arPortNode)
     }
     
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
