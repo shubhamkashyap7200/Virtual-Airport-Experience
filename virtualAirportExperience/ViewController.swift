@@ -153,6 +153,8 @@ extension ViewController {
     func startApp() {
         DispatchQueue.main.async {
             self.appState = .DetectSurface
+            self.arPortNode.isHidden = true
+            self.focusNode.isHidden = true
         }
     }
     
@@ -161,6 +163,7 @@ extension ViewController {
     func resetApp() {
         self.resetARSession()
         self.appState = .DetectSurface
+        self.arPortNode.isHidden = true
     }
     
 }
