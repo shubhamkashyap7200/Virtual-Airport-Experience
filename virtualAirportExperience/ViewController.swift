@@ -25,6 +25,7 @@ class ViewController: UIViewController {
     var statusMessage: String = ""
     var appState: AppState = .DetectSurface
     var focusPoint: CGPoint!
+    var focusNode: SCNNode!
     
     override var prefersStatusBarHidden: Bool {
       return true
@@ -53,6 +54,7 @@ class ViewController: UIViewController {
         self.initScene()
         self.initARSession()
         self.initCoachOverlayView()
+        self.initFocusNode()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -203,6 +205,7 @@ extension ViewController {
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
         DispatchQueue.main.async {
             self.updateStatus()
+            self.updateFocusNode()
         }
     }
     
@@ -226,13 +229,45 @@ extension ViewController {
 // MARK: - Focus Node Management
 extension ViewController {
     
-    // Add code here...
+    // MARK: - Helper Functions
     func initFocusNode() {
+        
+        let focusScene = SCNScene(named: "art.scnassets/Scenes/FocusScene.scn")!
+        focusNode = focusScene.rootNode.childNode(withName: "Focus", recursively: false)
+        focusNode.isHidden = true
+        sceneView.scene.rootNode.addChildNode(focusNode)
+        
         focusPoint = CGPoint(x: view.center.x, y: view.center.y + view.center.y * 0.1)
         
         NotificationCenter.default.addObserver(self, selector: #selector(orientationChanged), name: UIDevice.orientationDidChangeNotification, object: nil)
     }
     
+    func updateFocusNode() {
+        guard appState != .Started else { focusNode.isHidden = true; return }
+        
+        if let query = self.sceneView.raycastQuery(
+            from: self.focusPoint,
+            allowing: .estimatedPlane,
+            alignment: .horizontal
+        ) {
+            let results = self.sceneView.session.raycast(query)
+            if results.count == 1 {
+                if let match = results.first {
+                    let t = match.worldTransform
+                    
+                    self.focusNode.position = SCNVector3(x: t.columns.3.x, y: t.columns.3.y, z: t.columns.3.z)
+                    self.appState = .TapAtStart
+                    focusNode.isHidden = false
+                }
+            }
+            else {
+                self.appState = .PointAtSurface
+                focusNode.isHidden = true
+            }
+        }
+    }
+    
+    // MARK: - Focus Node Selectors
     @objc func orientationChanged() {
         focusPoint = CGPoint(x: view.center.x, y: view.center.y + view.center.y * 0.1)
     }
